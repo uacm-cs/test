@@ -1,0 +1,1411 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argumentación para la Vida Democrática</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #ed8936;
+            --light: #f7fafc;
+            --dark: #2d3748;
+            --success: #48bb78;
+            --warning: #ecc94b;
+            --danger: #f56565;
+            --gradient-1: #667eea;
+            --gradient-2: #764ba2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 6px;
+            margin-top: 20px;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .section {
+            background: white;
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: none;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        h3 {
+            color: var(--secondary);
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-left: 5px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tool-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+        }
+
+        .tool-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.5em;
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success) 0%, #38a169 100%);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .option-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .option-card {
+            background: white;
+            border: 3px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .option-card.selected {
+            border-color: var(--success);
+            background: #f0fff4;
+        }
+
+        .option-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .analysis-form {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .question-block {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .question-block label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .feedback-box {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .feedback-box.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .feedback-box h4 {
+            color: #234e52;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feedback-content {
+            color: #2d3748;
+            line-height: 1.8;
+        }
+
+        .strength {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .improvement {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .suggestion {
+            background: #fffaf0;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .content-display {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .timer {
+            background: linear-gradient(135deg, var(--accent) 0%, #dd6b20 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(237, 137, 54, 0.3);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .section-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #cbd5e0;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .dot.completed {
+            background: var(--success);
+        }
+
+        .final-report {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border: 3px solid var(--success);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 30px 0;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success) 0%, #38a169 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e2e8f0;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            border: 2px solid #f6e05e;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .tip-box::before {
+            content: '💡';
+            font-size: 2em;
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: white;
+            padding: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .section { padding: 25px; }
+            .option-cards { grid-template-columns: 1fr; }
+        }
+
+        .hidden { display: none; }
+       
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+       
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🗣️ Argumentación para la Vida Democrática</h1>
+        <p class="subtitle">Herramientas para el análisis crítico de argumentos</p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- SECCIÓN 0: INTRODUCCIÓN -->
+        <section id="section-intro" class="section active">
+            <h2>Introducción</h2>
+           
+            <div class="intro-text">
+                <p>Te proponemos una perspectiva integral derivada del texto <em>"Lógica para ciudadanos"</em> de Luis Vega-Reñón, presentando herramientas potentes para el análisis de cualquier instancia de argumentación desde las perspectivas <strong>retórica, lógica, dialéctica y socio-institucional</strong>.</p>
+               
+                <p>La inclusión de herramientas de análisis desde todas estas perspectivas tiene por objetivo ayudar a pensar sobre los procesos argumentativos desde una perspectiva más profundamente democrática, al mismo tiempo que nos ayuda a desarrollar capacidades que pueden <strong>demeritar la calidad de la argumentación</strong> ya sea por error, engaño o autoengaño.</p>
+               
+                <p>Nuestra postura es que una <strong>auténtica vida democrática</strong> requiere de procesos argumentativos que contribuyan a la comprensión mutua y a la construcción de acuerdos. Sin embargo, los procesos de socialización a los que la mayoría de la población está sujeta son procesos conformados desde perspectivas autoritarias.</p>
+               
+                <p>Así, es crucial conocer perspectivas de análisis y participación argumentativa que permitan identificar procesos argumentativos que bloquean la comprensión y la construcción de acuerdos.</p>
+            </div>
+
+            <div class="highlight-box">
+                <strong>🎯 Objetivo:</strong> Conformar ciudadanas y ciudadanos preparados para una convivencia democrática mediante el análisis riguroso de argumentos.
+            </div>
+
+            <div class="tip-box">
+                <strong>¿Cómo funciona esta aplicación?</strong><br>
+                Recorrerás 4 dimensiones de análisis: Retórica, Lógica, Dialéctica y Socio-institucional. En cada una analizarás un texto o video usando preguntas guía específicas y recibirás retroalimentación personalizada.
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn" onclick="nextSection()">Comenzar Análisis →</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 1: SELECCIÓN DE CONTENIDO -->
+        <section id="section-content" class="section">
+            <h2>Selección del Material a Analizar</h2>
+           
+            <p class="intro-text">Elige cómo quieres proporcionar el material que analizarás a lo largo de las siguientes secciones:</p>
+
+            <div class="option-cards">
+                <div class="option-card" onclick="selectOption('upload')" id="option-upload">
+                    <div class="option-icon">📄</div>
+                    <h3>Cargar tu propio material</h3>
+                    <p>Pega el texto directamente o proporciona una URL de internet (artículo, video de YouTube, noticia, etc.)</p>
+                </div>
+               
+                <div class="option-card" onclick="selectOption('generate')" id="option-generate">
+                    <div class="option-icon">🎯</div>
+                    <h3>Generar material sugerido</h3>
+                    <p>Define un tema de tu interés y te propondremos un texto o video para analizar</p>
+                </div>
+            </div>
+
+            <!-- Formulario para opción 1: Upload -->
+            <div id="form-upload" class="hidden">
+                <div class="input-group">
+                    <label>📋 Pega el texto a analizar:</label>
+                    <textarea id="input-text" placeholder="Escribe o pega aquí el texto que deseas analizar..."></textarea>
+                </div>
+               
+                <div style="text-align: center; margin: 20px 0;">
+                    <span style="color: #718096; font-weight: 600;">— O —</span>
+                </div>
+
+                <div class="input-group">
+                    <label>🌐 O proporciona una URL:</label>
+                    <input type="url" id="input-url" placeholder="https://ejemplo.com/articulo">
+                </div>
+
+                <div class="input-group">
+                    <label>📝 Título o descripción breve:</label>
+                    <input type="text" id="input-title" placeholder="Ej: Discurso sobre educación pública">
+                </div>
+            </div>
+
+            <!-- Formulario para opción 2: Generar -->
+            <div id="form-generate" class="hidden">
+                <div class="input-group">
+                    <label>🎯 Tema de interés:</label>
+                    <input type="text" id="input-topic" placeholder="Ej: Cambio climático, Reforma electoral, Derechos humanos...">
+                </div>
+               
+                <div class="input-group">
+                    <label>📱 Tipo de contenido preferido:</label>
+                    <select id="content-type">
+                        <option value="text">Texto escrito (artículo, ensayo)</option>
+                        <option value="video">Video (discurso, entrevista, debate)</option>
+                        <option value="mixed">No tengo preferencia</option>
+                    </select>
+                </div>
+
+                <div class="loading" id="generating-loading">
+                    <div class="spinner"></div>
+                    <p>Buscando material relevante...</p>
+                </div>
+
+                <div id="generated-content" class="hidden">
+                    <div class="highlight-box">
+                        <strong>📌 Material sugerido:</strong>
+                        <div id="suggested-material"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="prevSection()">← Anterior</button>
+                <button class="btn" onclick="confirmContent()" id="btn-confirm-content" disabled>Confirmar y Continuar →</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: RETÓRICA -->
+        <section id="section-retorica" class="section">
+            <h2>🔥 Análisis Retórico</h2>
+           
+            <div class="intro-text">
+                <p>Desde la perspectiva retórica, retomamos la distinción aristotélica entre <strong>persuadir</strong> (uso ilegítimo que busca manipular) y <strong>convencer</strong> (proceso de buenas razones para llegar a acuerdos).</p>
+               
+                <p>Identificaremos tres tipos de estilo argumentativo:</p>
+            </div>
+
+            <div class="tool-card">
+                <h4><span class="icon">💔</span> Estilo Patético</h4>
+                <p>Busca mover las emociones del auditorio para lograr persuadirlo. Ejemplos: hacer enojar, sentir culpables, conmover, indignar.</p>
+            </div>
+
+            <div class="tool-card">
+                <h4><span class="icon">⚖️</span> Estilo Moralista</h4>
+                <p>Apela a las costumbres y valores tradicionales del grupo social para persuadir. Usa refranes, citas de textos sagrados, apelación a la tradición.</p>
+            </div>
+
+            <div class="tool-card">
+                <h4><span class="icon">🧠</span> Estilo Lógico</h4>
+                <p>Articula secuencias de razonamientos que hacen parecer plausible o verosímil la propuesta del argumentador.</p>
+            </div>
+
+            <div class="highlight-box">
+                <strong>⚠️ Estrategias socio-institucionales:</strong> La cultura europea moderna impuso estructuras de valor que generan desigualdades. Estamos predispuestos a creer más en hombres, blancos, con traje, con estudios universitarios...
+            </div>
+
+            <div class="timer" id="timer-retorica">
+                ⏱️ Tiempo de reflexión: <span id="time-retorica">05:00</span>
+            </div>
+
+            <div class="analysis-form">
+                <h3>📝 Preguntas Guía para el Análisis</h3>
+               
+                <div class="content-display" id="display-content-retorica">
+                    [El contenido seleccionado aparecerá aquí]
+                </div>
+
+                <div class="question-block">
+                    <label>1. ¿Qué estilo o estilos de argumentación utiliza (moralista, patético o lógico) y en qué proporciones?</label>
+                    <textarea id="ret-q1" placeholder="Describe qué estilos identificas y en qué medida se usan cada uno..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>2. ¿Qué estrategias de argumentación identificas y con qué estilo están relacionadas?</label>
+                    <textarea id="ret-q2" placeholder="Menciona estrategias específicas como chantaje emocional, apelación a la autoridad, uso de refranes, etc."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>3. ¿Identificas estrategias para presentarse como persona digna de credibilidad? ¿Cuáles?</label>
+                    <textarea id="ret-q3" placeholder="Vestimenta, títulos académicos, posición social, uso de jerga especializada..."></textarea>
+                </div>
+
+                <button class="btn btn-success" onclick="submitAnalysis('retorica')">Enviar Análisis</button>
+            </div>
+
+            <div class="feedback-box" id="feedback-retorica">
+                <h4>🤖 Retroalimentación Inteligente</h4>
+                <div class="feedback-content" id="feedback-content-retorica"></div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="prevSection()">← Anterior</button>
+                <button class="btn hidden" onclick="nextSection()" id="next-retorica">Continuar a Lógica →</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: LÓGICA -->
+        <section id="section-logica" class="section">
+            <h2>🧮 Análisis Lógico</h2>
+           
+            <div class="intro-text">
+                <p>Un estilo de argumentación lógica requiere de <strong>razonamientos</strong>: estructuras con premisas y conclusiones que proponen que es correcto concluir algo a partir de consideraciones previas.</p>
+               
+                <p>Reformula los razonamientos con la estructura: <em>"Concluyo ... porque ..."</em></p>
+            </div>
+
+            <div class="tool-card">
+                <h4><span class="icon">📐</span> Razonamientos Deductivos</h4>
+                <p>Premisas son definiciones, axiomas o suposiciones tomadas axiomáticamente. La conclusión sigue necesariamente de las premisas. Ejemplo: Si 2×5=10, entonces 10/5=2.</p>
+            </div>
+
+            <div class="tool-card">
+                <h4><span class="icon">📊</span> Razonamientos Inductivos</h4>
+                <p>Premisas son casos o datos; conclusiones son probabilísticas. Depende de la completitud y representatividad de los casos. Ejemplo: Varios líderes pidieron guardia personal y se volvieron tiranos, luego quien pida guardia personal aspira a la tiranía.</p>
+            </div>
+
+            <div class="tool-card">
+                <h4><span class="icon">💡</span> Razonamientos Abductivos</h4>
+                <p>La conclusión es una hipótesis explicativa. Requiere comparación contra hipótesis alternativas. Ejemplo: Dado que los cuerpos celestes orbitan y caen hacia su centro, postulamos una fuerza gravitacional.</p>
+            </div>
+
+            <div class="timer" id="timer-logica">
+                ⏱️ Tiempo de reflexión: <span id="time-logica">05:00</span>
+            </div>
+
+            <div class="analysis-form">
+                <h3>📝 Pasos Guía para la Valoración</h3>
+
+                <div class="content-display" id="display-content-logica">
+                    [El contenido seleccionado aparecerá aquí]
+                </div>
+
+                <div class="question-block">
+                    <label>1. Identifica posibles razonamientos y reformúlalos con la estructura "concluyo X porque..."</label>
+                    <textarea id="log-q1" placeholder="Ej: Concluyo que se necesita más seguridad porque los índices delictivos han aumentado un 30% en el último año..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>2. Identifica el tipo de razonamientos (inductivo, deductivo o abductivo) y explica por qué los clasificas así.</label>
+                    <textarea id="log-q2" placeholder="Clasifica cada razonamiento identificado y justifica tu clasificación..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>3. Realiza una valoración de cada razonamiento usando los criterios pertinentes para su tipo.</label>
+                    <textarea id="log-q3" placeholder="¿Los deductivos son válidos? ¿Los inductivos tienen datos completos y representativos? ¿Los abductivos consideran alternativas?"></textarea>
+                </div>
+
+                <button class="btn btn-success" onclick="submitAnalysis('logica')">Enviar Análisis</button>
+            </div>
+
+            <div class="feedback-box" id="feedback-logica">
+                <h4>🤖 Retroalimentación Inteligente</h4>
+                <div class="feedback-content" id="feedback-content-logica"></div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="prevSection()">← Anterior</button>
+                <button class="btn hidden" onclick="nextSection()" id="next-logica">Continuar a Dialéctica →</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: DIALÉCTICA -->
+        <section id="section-dialectica" class="section">
+            <h2>🤝 Análisis Dialéctico</h2>
+           
+            <div class="intro-text">
+                <p>La dialéctica estudia los procesos de diálogo. Distinguimos entre:</p>
+               
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Dialéctica erística</strong> (Eris = diosa de la discordia): El objetivo es imponerse al interlocutor. Versión dominante en la cultura europea debido al colonialismo.</li>
+                    <li><strong>Dialéctica constructiva</strong>: Busca la comprensión mutua y la construcción conjunta de acuerdos.</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Elementos de la dialéctica constructiva:</strong><br>
+                1. Esfuerzo consciente por <strong>comprenderse</strong> mutuamente<br>
+                2. Esfuerzo por <strong>construir conjuntamente</strong> un acuerdo que incorpore los intereses importantes de cada parte
+            </div>
+
+            <div class="tool-card">
+                <h4><span class="icon">🧩</span> Racionalidad vs. Razonabilidad</h4>
+                <p><strong>Racionalidad:</strong> Atención a la valoración de razonamientos (lógica).<br>
+                <strong>Razonabilidad:</strong> Atiende a las particularidades del contexto para buscar comprensión y acuerdos. No se limita a la racionalidad.</p>
+            </div>
+
+            <div class="timer" id="timer-dialectica">
+                ⏱️ Tiempo de reflexión: <span id="time-dialectica">05:00</span>
+            </div>
+
+            <div class="analysis-form">
+                <h3>📝 Pasos Guía para la Valoración</h3>
+
+                <div class="content-display" id="display-content-dialectica">
+                    [El contenido seleccionado aparecerá aquí]
+                </div>
+
+                <div class="question-block">
+                    <label>1. Para cada participante: ¿Interactúan desde una perspectiva competitiva o cooperativa? ¿Por qué?</label>
+                    <textarea id="dia-q1" placeholder="Analiza si buscan imponerse (erístico) o comprenderse (constructivo)..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>2. ¿Interactúan desde racionalidad o razonabilidad? Explica.</label>
+                    <textarea id="dia-q2" placeholder="¿Se limitan a evaluar razonamientos o atienden al contexto para construir acuerdos?"></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>3. ¿Intentan comprender o refutar a su interlocutor?</label>
+                    <textarea id="dia-q3" placeholder="Las preguntas son auténticas (buscan entender) o retóricas (buscan debilitar)?"></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>4. Nota: Incluso en un monólogo, ¿la persona abre caminos hacia el entendimiento o es erística?</label>
+                    <textarea id="dia-q4" placeholder="Si es un solo hablante, ¿invita a la reflexión conjunta o impone su visión?"></textarea>
+                </div>
+
+                <button class="btn btn-success" onclick="submitAnalysis('dialectica')">Enviar Análisis</button>
+            </div>
+
+            <div class="feedback-box" id="feedback-dialectica">
+                <h4>🤖 Retroalimentación Inteligente</h4>
+                <div class="feedback-content" id="feedback-content-dialectica"></div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="prevSection()">← Anterior</button>
+                <button class="btn hidden" onclick="nextSection()" id="next-dialectica">Continuar a Socio-institucional →</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: SOCIO-INSTITUCIONAL -->
+        <section id="section-socio" class="section">
+            <h2>🏛️ Análisis Socio-Institucional</h2>
+           
+            <div class="intro-text">
+                <p>Todo proceso argumentativo se da en un <strong>contexto socio-institucional</strong> donde los interlocutores suelen tener diferencias de rango y poder derivadas del cargo, formación, ingresos, género, etnia, entre otras.</p>
+               
+                <p>En contextos autoritarios, quienes tienen mayor poder aprovechan eso para imponerse. Para una argumentación democrática, es indispensable:</p>
+               
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Ser consciente de los propios privilegios y desigualdades</li>
+                    <li>No usar esas diferencias como ventaja en el proceso argumentativo</li>
+                    <li>Nivelar la interacción a pesar de las desigualdades estructurales</li>
+                </ul>
+            </div>
+
+            <div class="timer" id="timer-socio">
+                ⏱️ Tiempo de reflexión: <span id="time-socio">05:00</span>
+            </div>
+
+            <div class="analysis-form">
+                <h3>📝 Pasos Guía para la Valoración</h3>
+
+                <div class="content-display" id="display-content-socio">
+                    [El contenido seleccionado aparecerá aquí]
+                </div>
+
+                <div class="question-block">
+                    <label>1. Análisis del contexto institucional: ¿Qué relaciones de poder identificas?</label>
+                    <textarea id="soc-q1" placeholder="Cargos, instituciones, recursos económicos, capital cultural, género, etnia, edad..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>2. Para cada participante: ¿Aprovechan las relaciones de poder que les favorecen?</label>
+                    <textarea id="soc-q2" placeholder="¿Usan su posición, títulos, recursos para imponerse? ¿Cómo?"></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label>3. ¿Procuran nivelar la interacción a pesar de las desigualdades?</label>
+                    <textarea id="soc-q3" placeholder="¿Hay esfuerzos por crear espacios más equitativos de deliberación? ¿Cuáles?"></textarea>
+                </div>
+
+                <button class="btn btn-success" onclick="submitAnalysis('socio')">Enviar Análisis</button>
+            </div>
+
+            <div class="feedback-box" id="feedback-socio">
+                <h4>🤖 Retroalimentación Inteligente</h4>
+                <div class="feedback-content" id="feedback-content-socio"></div>
+            </div>
+
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="prevSection()">← Anterior</button>
+                <button class="btn hidden" onclick="nextSection()" id="next-socio">Ver Reporte Final →</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: REPORTE FINAL -->
+        <section id="section-final" class="section">
+            <h2>📊 Reporte Final y Recomendaciones</h2>
+           
+            <div class="final-report">
+                <h3 style="text-align: center; color: var(--primary);">Resumen de tu Análisis</h3>
+               
+                <div class="score-circle" id="final-score">85%</div>
+               
+                <div id="final-summary" style="margin: 30px 0;">
+                    <!-- Contenido generado dinámicamente -->
+                </div>
+
+                <div class="suggestion">
+                    <h4>🎯 Fortalezas identificadas:</h4>
+                    <ul id="strengths-list"></ul>
+                </div>
+
+                <div class="suggestion">
+                    <h4>📈 Áreas de mejora:</h4>
+                    <ul id="improvements-list"></ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🚀 Siguientes pasos para continuar tu desarrollo:</h3>
+                <ol style="margin-left: 20px; margin-top: 15px; line-height: 2;">
+                    <li><strong>Práctica constante:</strong> Aplica estas herramientas a discursos políticos, noticias y conversaciones cotidianas.</li>
+                    <li><strong>Lectura recomendada:</strong> Profundiza en "Lógica para ciudadanos" de Luis Vega-Reñón.</li>
+                    <li><strong>Discusión grupal:</strong> Forma círculos de análisis donde múltiples personas evalúen los mismos materiales y comparen perspectivas.</li>
+                    <li><strong>Autoevaluación:</strong> Graba tus propios argumentos y analízalos con estas mismas herramientas.</li>
+                    <li><strong>Diversidad de fuentes:</strong> Analiza materiales de diferentes tradiciones culturales más allá de la europea moderna.</li>
+                </ol>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn" onclick="location.reload()">🔄 Realizar Nuevo Análisis</button>
+                <button class="btn btn-outline" onclick="window.print()">🖨️ Imprimir Reporte</button>
+            </div>
+        </section>
+
+        <div class="section-indicator" id="sectionIndicator">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <script>
+        // Estado de la aplicación
+        const state = {
+            currentSection: 0,
+            sections: ['intro', 'content', 'retorica', 'logica', 'dialectica', 'socio', 'final'],
+            contentType: null,
+            content: '',
+            contentTitle: '',
+            analysis: {
+                retorica: {},
+                logica: {},
+                dialectica: {},
+                socio: {}
+            }
+        };
+
+        // Contenidos de ejemplo para generación
+        const exampleContents = {
+            'Cambio climático': {
+                text: `DISCURSO: "La crisis climática es el mayor desafío de nuestra generación. Los científicos más prestigiosos del mundo, con doctorados en las mejores universidades, coinciden: si no actuamos ahora, será demasiado tarde.
+
+¿Qué clase de mundo le dejaremos a nuestros hijos? ¿Un planeta devastado, sin recursos, donde lucharán por sobrevivir? Como padre, no puedo quedarme de brazos cruzados.
+
+Los datos son claros: temperaturas globales aumentaron 1.1°C desde la era preindustrial. Los glaciares se derriten a ritmos sin precedentes. Los eventos climáticos extremos han aumentado 300% en 50 años.
+
+Por eso propongo: transición energética inmediata, inversión masiva en renovables y penalización severa a contaminadores. Los opositores a estas medidas, financiados por grandes petroleras, prefieren sus ganancias sobre nuestro futuro.
+
+Confíen en quienes tenemos la formación técnica y el compromiso moral. Juntos, podemos salvar el planeta."`,
+                type: 'text'
+            },
+            'Reforma electoral': {
+                text: `ENTREVISTA TELEVISIVA:
+
+Periodista: ¿Por qué debería aprobarse esta reforma?
+
+Político: Mire, yo llevo 30 años en la política. He sido gobernador, senador, he visto de todo. La gente está cansada de que sus votos no valgan. En mi pueblo natal, la gente humilde, trabajadora, me dice: "Doctor, haga algo".
+
+Además, el sistema actual favorece a los grandes partidos. ¿Es justo que un partido con 40% de votos tenga 60% de escaños? Mi abuela decía: "El que parte y reparte, se lleva la mejor parte". Así opera el sistema actual.
+
+Tenemos el respaldo de organizaciones internacionales, de académicos de Harvard, de la ONU. Los estudios demuestran que la representación proporcional aumenta la confianza ciudadana.
+
+Quienes se oponen son los mismos de siempre: los que se benefician del statu quo. Les molesta perder sus privilegios. Pero el pueblo manda, y el pueblo quiere cambio.
+
+Yo no busco beneficiarme; ya tengo mi carrera hecha. Lo hago por México, por nuestra democracia. Los invito a unirse a esta causa histórica.`,
+                type: 'video'
+            },
+            'Educación pública': {
+                text: `ARTÍCULO DE OPINIÓN:
+
+"La educación pública está en crisis. Como exsecretario de Educación con 15 años de experiencia, debo alertar sobre esta situación.
+
+Los números no mienten: 60% de los estudiantes no alcanzan niveles básicos de comprensión lectora. La OCDE ubica a nuestro país en los últimos lugares de evaluaciones internacionales. Cada año que pasa, perdemos competitividad.
+
+¿La causa? La falta de inversión. Mientras otros países invierten el 6% del PIB, nosotros apenas llegamos al 4%. Es matemático: menos recursos = peores resultados.
+
+Pero hay esperanza. En Finlandia, con inversión adecuada y respeto a los maestros, lograron transformar su sistema. Podemos hacerlo aquí.
+
+Los sindicatos se oponen al cambio, protegiendo plazas de aviadores. Pero los verdaderos maestros, los que se levantan temprano y aman su vocación, merecen mejores condiciones y evaluaciones justas.
+
+No podemos permitir que otra generación se pierda. Nuestros niños, especialmente los más pobres que solo tienen acceso a la escuela pública, merecen oportunidades.
+
+Invito a los padres de familia, a los empresarios, a todos los ciudadanos a exigir más inversión educativa. El futuro de México depende de ello."`,
+                type: 'text'
+            }
+        };
+
+        // Navegación entre secciones
+        function showSection(index) {
+            document.querySelectorAll('.section').forEach((section, i) => {
+                section.classList.toggle('active', i === index);
+            });
+           
+            // Actualizar indicadores
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+                dot.classList.toggle('completed', i < index);
+            });
+           
+            // Actualizar barra de progreso
+            const progress = ((index + 1) / state.sections.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+           
+            state.currentSection = index;
+           
+            // Iniciar timer si es necesario
+            if (['retorica', 'logica', 'dialectica', 'socio'].includes(state.sections[index])) {
+                startTimer(state.sections[index]);
+            }
+        }
+
+        function nextSection() {
+            if (state.currentSection < state.sections.length - 1) {
+                showSection(state.currentSection + 1);
+            }
+        }
+
+        function prevSection() {
+            if (state.currentSection > 0) {
+                showSection(state.currentSection - 1);
+            }
+        }
+
+        // Selección de opción de contenido
+        function selectOption(option) {
+            state.contentType = option;
+           
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById('option-' + option).classList.add('selected');
+           
+            document.getElementById('form-upload').classList.add('hidden');
+            document.getElementById('form-generate').classList.add('hidden');
+            document.getElementById('form-' + option).classList.remove('hidden');
+           
+            document.getElementById('btn-confirm-content').disabled = false;
+        }
+
+        // Confirmar contenido
+        function confirmContent() {
+            if (state.contentType === 'upload') {
+                const text = document.getElementById('input-text').value;
+                const url = document.getElementById('input-url').value;
+                const title = document.getElementById('input-title').value;
+               
+                if (!text && !url) {
+                    alert('Por favor, proporciona un texto o una URL para analizar.');
+                    return;
+                }
+               
+                state.content = text || `[URL proporcionada: ${url}]\n\n[Nota: En una implementación completa, aquí se mostraría el contenido extraído de la URL]`;
+                state.contentTitle = title || 'Material proporcionado por el usuario';
+            } else {
+                const topic = document.getElementById('input-topic').value;
+                if (!topic) {
+                    alert('Por favor, define un tema de interés.');
+                    return;
+                }
+               
+                // Simular generación de contenido
+                document.getElementById('generating-loading').classList.add('show');
+               
+                setTimeout(() => {
+                    document.getElementById('generating-loading').classList.remove('show');
+                   
+                    // Buscar contenido relacionado o usar genérico
+                    const content = exampleContents[topic] || {
+                        text: `MATERIAL SOBRE: ${topic}\n\n[Se ha generado un material de ejemplo sobre ${topic}. En una implementación completa con API, aquí se buscaría contenido real relacionado con este tema.]\n\n"El tema de ${topic} es fundamental para nuestra sociedad. Los expertos coinciden en que requiere atención urgente. Los datos muestran tendencias preocupantes que debemos abordar colectivamente. Sin embargo, existen visiones encontradas sobre cómo proceder, y es crucial analizar los argumentos de todas las partes con rigor democrático."`,
+                        type: 'text'
+                    };
+                   
+                    state.content = content.text;
+                    state.contentTitle = `Material sobre: ${topic}`;
+                   
+                    document.getElementById('suggested-material').innerHTML = `
+                        <strong>${state.contentTitle}</strong><br>
+                        <small>Tipo: ${content.type === 'video' ? '🎥 Video' : '📄 Texto'}</small>
+                        <div style="margin-top: 10px; padding: 10px; background: #f7fafc; border-radius: 5px; font-size: 0.9em;">
+                            ${content.text.substring(0, 200)}...
+                        </div>
+                    `;
+                    document.getElementById('generated-content').classList.remove('hidden');
+                }, 1500);
+               
+                return; // Esperar a la generación
+            }
+           
+            updateContentDisplays();
+            nextSection();
+        }
+
+        function updateContentDisplays() {
+            const displays = ['retorica', 'logica', 'dialectica', 'socio'];
+            displays.forEach(section => {
+                const display = document.getElementById('display-content-' + section);
+                if (display) {
+                    display.textContent = `📌 ${state.contentTitle}\n\n${state.content}`;
+                }
+            });
+        }
+
+        // Timer
+        let timerInterval;
+        function startTimer(section) {
+            clearInterval(timerInterval);
+            let timeLeft = 300; // 5 minutos en segundos
+           
+            const timerElement = document.getElementById('time-' + section);
+            if (!timerElement) return;
+           
+            function updateTimer() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+               
+                if (timeLeft > 0) {
+                    timeLeft--;
+                } else {
+                    clearInterval(timerInterval);
+                }
+            }
+           
+            updateTimer();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        // Análisis y retroalimentación
+        function submitAnalysis(section) {
+            const responses = {};
+            let qIndex = 1;
+           
+            while (document.getElementById(`${section.substring(0, 3)}-q${qIndex}`)) {
+                responses[`q${qIndex}`] = document.getElementById(`${section.substring(0, 3)}-q${qIndex}`).value;
+                qIndex++;
+            }
+           
+            // Verificar que haya respuestas
+            const hasResponses = Object.values(responses).some(r => r.trim().length > 0);
+            if (!hasResponses) {
+                alert('Por favor, responde al menos una pregunta antes de enviar.');
+                return;
+            }
+           
+            state.analysis[section] = responses;
+           
+            // Generar retroalimentación
+            const feedback = generateFeedback(section, responses);
+           
+            document.getElementById(`feedback-content-${section}`).innerHTML = feedback;
+            document.getElementById(`feedback-${section}`).classList.add('show');
+           
+            // Mostrar botón de continuar
+            document.getElementById(`next-${section}`).classList.remove('hidden');
+           
+            // Scroll a la retroalimentación
+            document.getElementById(`feedback-${section}`).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateFeedback(section, responses) {
+            const feedbacks = {
+                retorica: () => {
+                    let analysis = '<p><strong>Análisis de tus respuestas:</strong></p>';
+                   
+                    const r1 = responses.q1 || '';
+                    const r2 = responses.q2 || '';
+                    const r3 = responses.q3 || '';
+                   
+                    // Análisis de estilos
+                    if (r1.toLowerCase().includes('patético') || r1.toLowerCase().includes('emocional')) {
+                        analysis += '<p>✅ <span class="strength">Bien identificado el componente patético.</span> Reconocer las apelaciones emocionales es crucial para detectar intentos de manipulación.</p>';
+                    }
+                    if (r1.toLowerCase().includes('moralista') || r1.toLowerCase().includes('valores')) {
+                        analysis += '<p>✅ <span class="strength">Correcta identificación del estilo moralista.</span> Las apelaciones a la tradición y valores pueden cerrar el diálogo al presentarlos como innegociables.</p>';
+                    }
+                    if (r1.toLowerCase().includes('lógico') || r1.toLowerCase().includes('razonamiento')) {
+                        analysis += '<p>✅ <span class="strength">Buena observación del estilo lógico.</span> Aunque recuerda que "parecer lógico" no es lo mismo que ser válido lógicamente.</p>';
+                    }
+                   
+                    // Análisis de estrategias
+                    if (r2.length > 50) {
+                        analysis += '<p>✅ <span class="strength">Has identificado estrategias específicas.</span> ';
+                        if (r2.toLowerCase().includes('autoridad')) {
+                            analysis += 'Notaste la apelación a la autoridad, que es una estrategia común para evitar el debate sobre el mérito real de los argumentos.';
+                        } else if (r2.toLowerCase().includes('miedo') || r2.toLowerCase().includes('amenaza')) {
+                            analysis += 'Detectaste el uso del miedo como herramienta de persuasión, lo cual bloquea la deliberación racional.';
+                        } else {
+                            analysis += 'El detalle en tus observaciones demuestra buena capacidad analítica.';
+                        }
+                        analysis += '</p>';
+                    } else {
+                        analysis += '<p>⚠️ <span class="improvement">Intenta ser más específico en las estrategias.</span> Menciona ejemplos concretos del texto que ilustren tus observaciones.</p>';
+                    }
+                   
+                    // Análisis de credibilidad
+                    if (r3.toLowerCase().includes('traje') || r3.toLowerCase().includes('título') || r3.toLowerCase().includes('doctor')) {
+                        analysis += '<p>✅ <span class="strength">Excelente observación sobre marcadores de estatus.</span> Estos son mecanismos sutiles pero poderosos de persuasión que refuerzan desigualdades estructurales.</p>';
+                    }
+                   
+                    analysis += '<div class="suggestion"><strong>💡 Sugerencia:</strong> ';
+                    analysis += 'Para profundizar, compara: ¿El texto busca que <em>aceptes</em> sus conclusiones por la autoridad/emoción, o te invita a <em>comprender</em> sus razones y construir juntos un acuerdo?</div>';
+                   
+                    return analysis;
+                },
+               
+                logica: () => {
+                    let analysis = '<p><strong>Evaluación de razonamientos:</strong></p>';
+                   
+                    const r1 = responses.q1 || '';
+                    const r2 = responses.q2 || '';
+                    const r3 = responses.q3 || '';
+                   
+                    if (r1.includes('concluyo') || r1.includes('porque')) {
+                        analysis += '<p>✅ <span class="strength">Buena reformulación de razonamientos.</span> Esta estructura clara permite evaluar la fuerza de la inferencia.</p>';
+                    } else {
+                        analysis += '<p>⚠️ <span class="improvement">Intenta reformular explícitamente usando "Concluyo X porque Y".</span> Esto facilita identificar premisas y conclusiones.</p>';
+                    }
+                   
+                    if (r2.toLowerCase().includes('inductiv')) {
+                        analysis += '<p>✅ <span class="strength">Identificación de razonamiento inductivo.</span> Recuerda verificar: ¿los casos son suficientes? ¿representativos? ¿hay casos contrarios ignorados?</p>';
+                    }
+                    if (r2.toLowerCase().includes('deductiv')) {
+                        analysis += '<p>✅ <span class="strength">Reconocimiento de razonamiento deductivo.</span> Verifica que las premisas sean realmente aceptadas y que la forma sea válida.</p>';
+                    }
+                    if (r2.toLowerCase().includes('abductiv') || r2.toLowerCase().includes('hipótesis')) {
+                        analysis += '<p>✅ <span class="strength">Detección de razonamiento abductivo.</span> Este es el más complejo: ¿se consideraron hipótesis alternativas explicativas?</p>';
+                    }
+                   
+                    if (r3.length > 100) {
+                        analysis += '<p>✅ <span class="strength">Valoración detallada.</span> Tu análisis crítico de la calidad de los razonamientos es esencial para una democracia informada.</p>';
+                    }
+                   
+                    analysis += '<div class="suggestion"><strong>💡 Consejo:</strong> ';
+                    analysis += 'En argumentación pública, los razonamientos inductivos son comunes pero riesgosos por la <em>generalización apresurada</em>. Pregúntate siempre: "¿Es suficiente la evidencia para esta conclusión general?"</div>';
+                   
+                    return analysis;
+                },
+               
+                dialectica: () => {
+                    let analysis = '<p><strong>Análisis del proceso dialógico:</strong></p>';
+                   
+                    const r1 = responses.q1 || '';
+                    const r2 = responses.q2 || '';
+                    const r3 = responses.q3 || '';
+                   
+                    if (r1.toLowerCase().includes('competitiv') || r1.toLowerCase().includes('erístic')) {
+                        analysis += '<p>✅ <span class="strength">Identificaste la lógica de imposición.</span> Este tipo de dialéctica busca "ganar" más que entender, característica de contextos autoritarios.</p>';
+                    } else if (r1.toLowerCase().includes('cooperativ') || r1.toLowerCase().includes('constructiv')) {
+                        analysis += '<p>✅ <span class="strength">Reconocimiento de dialéctica constructiva.</span> Esto busca comprensión mutua y acuerdos compartidos.</p>';
+                    }
+                   
+                    if (r2.toLowerCase().includes('razonabilidad')) {
+                        analysis += '<p>✅ <span class="strength">Distinción importante entre racionalidad y razonabilidad.</span> La razonabilidad atiende al contexto y busca acuerdos, no solo evaluar razonamientos.</p>';
+                    }
+                   
+                    if (r3.toLowerCase().includes('comprender') || r3.toLowerCase().includes('entender')) {
+                        analysis += '<p>✅ <span class="strength">Enfoque en la comprensión.</span> Las preguntas auténticas buscan resolver dudas, no debilitar al otro.</p>';
+                    } else if (r3.toLowerCase().includes('refutar') || r3.toLowerCase().includes('destruir')) {
+                        analysis += '<p>✅ <span class="strength">Detectaste la lógica de refutación.</span> Esto suele ir acompañado de preguntas retóricas diseñadas para hacer quedar mal al otro.</p>';
+                    }
+                   
+                    analysis += '<div class="suggestion"><strong>💡 Reflexión:</strong> ';
+                    analysis += 'La verdadera democracia requiere dialéctica constructiva. Cuando observes un debate, pregunta: "¿Aquí se busca la verdad conjunta o la victoria de uno sobre otro?"</div>';
+                   
+                    return analysis;
+                },
+               
+                socio: () => {
+                    let analysis = '<p><strong>Análisis de poder e instituciones:</strong></p>';
+                   
+                    const r1 = responses.q1 || '';
+                    const r2 = responses.q2 || '';
+                    const r3 = responses.q3 || '';
+                   
+                    if (r1.toLowerCase().includes('género') || r1.toLowerCase().includes('etnia') || r1.toLowerCase().includes('clase') || r1.toLowerCase().includes('económico')) {
+                        analysis += '<p>✅ <span class="strength">Identificación de ejes estructurales de desigualdad.</span> Estas dimensiones moldean quién es escuchado y quién puede imponerse.</p>';
+                    }
+                   
+                    if (r1.toLowerCase().includes('cargo') || r1.toLowerCase().includes('título') || r1.toLowerCase().includes('institución')) {
+                        analysis += '<p>✅ <span class="strength">Reconocimiento de capital institucional.</span> Los cargos y títulos otorgan autoridad performativa en los discursos.</p>';
+                    }
+                   
+                    if (r2.toLowerCase().includes('sí') || r2.toLowerCase().includes('aprovecha') || r2.toLowerCase().includes('usa')) {
+                        analysis += '<p>⚠️ <span class="improvement">Uso de privilegios detectado.</span> Esto es característico de argumentación autoritaria donde el poder se usa para imponerse, no para nivelar.</p>';
+                    } else if (r2.toLowerCase().includes('no') || r2.toLowerCase().includes('evita')) {
+                        analysis += '<p>✅ <span class="strength">Neutralización de ventajas.</span> Esto es signo de argumentación democrática genuina.</p>';
+                    }
+                   
+                    if (r3.toLowerCase().includes('nivelar') || r3.toLowerCase().includes('equidad') || r3.toLowerCase().includes('inclusión')) {
+                        analysis += '<p>✅ <span class="strength">Esfuerzo democrático identificado.</span> Nivelar la interacción es indispensable para la deliberación justa.</p>';
+                    }
+                   
+                    analysis += '<div class="suggestion"><strong>💡 Recordatorio:</strong> ';
+                    analysis += 'Ser consciente de nuestros propios privilegios es el primer paso. La pregunta clave es: "¿Estoy usando mi posición para facilitar el diálogo o para silenciar voces?"</div>';
+                   
+                    return analysis;
+                }
+            };
+           
+            return feedbacks[section] ? feedbacks[section]() : '<p>Gracias por tu análisis. Revisa tus respuestas y compara con el material.</p>';
+        }
+
+        // Reporte final
+        function generateFinalReport() {
+            const sections = ['retorica', 'logica', 'dialectica', 'socio'];
+            const strengths = [];
+            const improvements = [];
+            let totalScore = 0;
+           
+            sections.forEach(section => {
+                const analysis = state.analysis[section];
+                if (!analysis) return;
+               
+                const responses = Object.values(analysis);
+                const hasContent = responses.some(r => r && r.trim().length > 50);
+               
+                if (hasContent) {
+                    totalScore += 25; // 25 puntos por sección completada
+                   
+                    // Detectar fortalezas según contenido
+                    if (section === 'retorica' && responses[0] && responses[0].toLowerCase().includes('patético')) {
+                        strengths.push('Capacidad para identificar manipulación emocional en discursos');
+                    }
+                    if (section === 'logica' && responses[1] && responses[1].toLowerCase().includes('inductiv')) {
+                        strengths.push('Comprensión de diferentes tipos de razonamiento');
+                    }
+                    if (section === 'dialectica' && responses[2] && responses[2].toLowerCase().includes('comprender')) {
+                        strengths.push('Sensibilidad hacia procesos dialógicos constructivos');
+                    }
+                    if (section === 'socio' && responses[0] && (responses[0].toLowerCase().includes('género') || responses[0].toLowerCase().includes('poder'))) {
+                        strengths.push('Conciencia sobre dimensiones estructurales de desigualdad');
+                    }
+                }
+            });
+           
+            // Sugerencias de mejora
+            if (!strengths.includes('Capacidad para identificar manipulación emocional en discursos')) {
+                improvements.push('Practica más la identificación de estrategias patéticas y moralistas');
+            }
+            if (!strengths.includes('Comprensión de diferentes tipos de razonamiento')) {
+                improvements.push('Profundiza en la distinción entre razonamientos deductivos, inductivos y abductivos');
+            }
+            if (!strengths.includes('Sensibilidad hacia procesos dialógicos constructivos')) {
+                improvements.push('Desarrolla más la capacidad de distinguir dialéctica erística de constructiva');
+            }
+            if (!strengths.includes('Conciencia sobre dimensiones estructurales de desigualdad')) {
+                improvements.push('Fortalece el análisis de relaciones de poder en contextos institucionales');
+            }
+           
+            // Añadir fortalezas genéricas si es necesario
+            if (strengths.length === 0) {
+                strengths.push('Compromiso con el análisis riguroso de argumentos');
+                strengths.push('Interés en desarrollar pensamiento crítico democrático');
+            }
+           
+            // Actualizar UI
+            document.getElementById('final-score').textContent = totalScore + '%';
+           
+            const summaryHTML = `
+                <p style="text-align: center; font-size: 1.1em; color: #4a5568;">
+                    Has completado el análisis integral de argumentación desde las cuatro perspectivas:<br>
+                    <strong>Retórica, Lógica, Dialéctica y Socio-institucional.</strong>
+                </p>
+                <p style="text-align: center; margin-top: 15px;">
+                    Material analizado: <em>${state.contentTitle}</em>
+                </p>
+            `;
+            document.getElementById('final-summary').innerHTML = summaryHTML;
+           
+            const strengthsList = document.getElementById('strengths-list');
+            strengthsList.innerHTML = strengths.map(s => `<li>${s}</li>`).join('');
+           
+            const improvementsList = document.getElementById('improvements-list');
+            improvementsList.innerHTML = improvements.map(i => `<li>${i}</li>`).join('');
+        }
+
+        // Modificar nextSection para generar reporte al final
+        const originalNextSection = nextSection;
+        nextSection = function() {
+            if (state.currentSection === 5) { // Antes de ir a final
+                generateFinalReport();
+            }
+            originalNextSection();
+        };
+
+        // Inicializar
+        showSection(0);
+    </script>
+</body>
+</html>
